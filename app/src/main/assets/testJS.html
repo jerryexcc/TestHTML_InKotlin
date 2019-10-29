@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/html">
+<body>
+<br>
+Hello World!!
+</br>
+<input id="inputbox" type="text" name="firstname">
+<button onclick="myTryIt()">網頁按鈕</button>
+
+<script>
+function myTryIt() {
+  android_app.callAndroid(document.getElementById("inputbox").value);
+  alert(document.getElementById("inputbox").value);
+}
+
+function mobileCallJs(params) {
+	document.getElementById("inputbox").value=params; 
+}
+
+</script>
+
+</body>
+</html>
