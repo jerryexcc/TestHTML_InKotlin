@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.*
+import androidx.annotation.RequiresApi
 import com.e.testhtml.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
@@ -34,6 +35,16 @@ class MainActivity : AppCompatActivity() {
         webView!!.addJavascriptInterface(JavaScriptInterface(), "android_app")//JS與Android溝通用的Interfacem
 
         webView!!.webChromeClient = WebChromeClient()//webview 才會顯示 alert
+        webView!!.webViewClient = object : WebViewClient(){
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                view?.loadUrl(request!!.url.toString())
+                return true
+            }
+        }
         webView!!.loadUrl(url_string)//讀取網頁
     }
 
